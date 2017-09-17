@@ -28,9 +28,6 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=pgsql
-    allow_failures:
-    - php: 7.0
-    fast_finish: true
 
 branches:
   only:
