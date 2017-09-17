@@ -1,7 +1,6 @@
 sudo: required
 language: php
 php:
-  - 5.4
   - 5.6
   - 7.0
 
@@ -19,12 +18,19 @@ services:
 
 env:
   global:
-  - CORE_BRANCH=master
+  - CORE_FORK_BRANCH=nc_master
+  - CORE_FORK_BRANCH=nc_stable11
+  - CORE_FORK_BRANCH=nc_stable12
+  - CORE_FORK_BRANCH=oc_master
+  - CORE_FORK_BRANCH=oc_stable10
   - PHP_COVERAGE=FALSE
   matrix:
   - DB=sqlite
   - DB=mysql
   - DB=pgsql
+    allow_failures:
+    - php: 7.0
+    fast_finish: true
 
 branches:
   only:
@@ -40,7 +46,8 @@ before_install:
   - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "GRANT ALL ON oc_autotest.* TO 'oc_autotest'@'localhost';"; fi
 
   - cd ..
-  - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH core
+  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'oc' ]]; then git clone https://github.com/owncloud/core.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core
+  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'nc' ]]; then git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core
   - mv registration core/apps/
 
 before_script:
