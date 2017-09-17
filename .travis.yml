@@ -60,7 +60,7 @@ script:
   - rm info.xsd
 
   # Check PHP syntax errors
-  - find . -name \*.php -not -path './vendor/*' -exec php -l "{}" \;
+  #- find . -name \*.php -not -path './vendor/*' -exec php -l "{}" \;
 
   # Run server's app code checker
   # TODO: enable once table renames are possible
