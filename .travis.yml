@@ -23,6 +23,8 @@ env:
   - PHP_COVERAGE=FALSE
   matrix:
   - DB=sqlite
+  - DB=mysql
+  - DB=pgsql
 
 branches:
   only:
