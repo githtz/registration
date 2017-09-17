@@ -43,8 +43,8 @@ before_install:
   - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "GRANT ALL ON oc_autotest.* TO 'oc_autotest'@'localhost';"; fi
 
   - cd ..
-  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'oc' ]]; then git clone https://github.com/owncloud/core.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core
-  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'nc' ]]; then git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core
+  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'oc' ]]; then git clone https://github.com/owncloud/core.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core; fi
+  - if [[ $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $1}') == 'nc' ]]; then git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $(echo $CORE_FORK_BRANCH | awk -F '_' '{print $2}') core; fi
   - mv registration core/apps/
 
 before_script:
