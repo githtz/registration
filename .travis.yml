@@ -51,6 +51,7 @@ before_script:
   - php -f core/occ app:enable registration
   # Enable app twice to check occ errors of registered commands
   - php -f core/occ app:enable registration
+  - cd core/apps/registration
 
   # XDebug is only needed if we report coverage -> speeds up other builds
   - if [[ "$PHP_COVERAGE" = "FALSE" ]]; then phpenv config-rm xdebug.ini; fi
